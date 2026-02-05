@@ -10,31 +10,32 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class OrderRepositoryImpl implements OrderRepository {
 
-  private final OrderJpaRepository jpa;
+  private final OrderJpaRepository orderJpaRepository;
 
-  public OrderRepositoryImpl(OrderJpaRepository jpa) {
-    this.jpa = jpa;
+  public OrderRepositoryImpl(OrderJpaRepository orderJpaRepository) {
+    this.orderJpaRepository = orderJpaRepository;
   }
 
   public Order save(Order order) {
     OrderEntity entity =
         new OrderEntity(order.getId().getValue(), order.getProduct(), order.getQuantity());
-    jpa.save(entity);
+    orderJpaRepository.save(entity);
     return order;
   }
 
   public java.util.Optional<Order> findById(String id) {
-    return jpa.findById(id)
+    return orderJpaRepository
+        .findById(id)
         .map(e -> new Order(new OrderId(e.getId()), e.getProduct(), e.getQuantity()));
   }
 
   public List<Order> findAll() {
-    return jpa.findAll().stream()
+    return orderJpaRepository.findAll().stream()
         .map(e -> new Order(new OrderId(e.getId()), e.getProduct(), e.getQuantity()))
         .collect(Collectors.toList());
   }
 
   public void deleteById(String id) {
-    jpa.deleteById(id);
+    orderJpaRepository.deleteById(id);
   }
 }

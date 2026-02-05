@@ -10,29 +10,29 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderService {
 
-  private final OrderRepository repository;
+  private final OrderRepository orderRepository;
 
-  public OrderService(OrderRepository repository) {
-    this.repository = repository;
+  public OrderService(OrderRepository orderRepository) {
+    this.orderRepository = orderRepository;
   }
 
   public Order create(String product, int quantity) {
     Order order = new Order(new OrderId(), product, quantity);
-    return repository.save(order);
+    return orderRepository.save(order);
   }
 
   public Order get(String id) {
-    return repository.findById(id).orElseThrow(() -> new OrderNotFoundException(id));
+    return orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException(id));
   }
 
   public List<Order> getAll() {
-    return repository.findAll();
+    return orderRepository.findAll();
   }
 
   public void delete(String id) {
-    if (repository.findById(id).isEmpty()) {
+    if (orderRepository.findById(id).isEmpty()) {
       throw new OrderNotFoundException(id);
     }
-    repository.deleteById(id);
+    orderRepository.deleteById(id);
   }
 }
