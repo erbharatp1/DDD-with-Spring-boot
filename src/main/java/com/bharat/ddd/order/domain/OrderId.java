@@ -1,5 +1,6 @@
 package com.bharat.ddd.order.domain;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.UUID;
 
 public class OrderId {
@@ -13,6 +14,7 @@ public class OrderId {
     this.value = value;
   }
 
+  @JsonValue
   public String getValue() {
     return value;
   }
