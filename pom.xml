@@ -132,7 +132,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>1.18.20</version>
+                            <version>1.18.30</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
@@ -200,7 +200,7 @@
                 <configuration>
                     <java>
                         <googleJavaFormat>
-                            <version>1.15.0</version>
+                            <version>1.17.0</version>
                             <style>GOOGLE</style>
                         </googleJavaFormat>
                     </java>
