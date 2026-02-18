@@ -58,6 +58,13 @@ You should see a response like this:
 {"status":"UP"}
 ```
 
+## API Documentation
+
+The project integrates OpenAPI (Swagger) for API documentation. When the application is running, you can access:
+
+- **Swagger UI**: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+- **OpenAPI Spec**: [http://localhost:8080/v3/api-docs](http://localhost:8080/v3/api-docs)
+
 To view the application logs, you can use the following command:
 
 ```bash
