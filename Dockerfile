@@ -2,15 +2,19 @@
 FROM maven:3.8.4-eclipse-temurin-17 AS build
 WORKDIR /app
 
-# Copy the pom and download dependencies
+# Copy the pom
 COPY pom.xml .
-RUN mvn dependency:go-offline
+
+# Pre-fetch dependencies to leverage Docker layer caching
+# This step will only rerun if pom.xml changes
+RUN --mount=type=cache,target=/root/.m2 mvn dependency:resolve
 
 # Copy the rest of the source code
 COPY src ./src
 
-# Build the application
-RUN mvn clean package -DskipTests
+# Build the application using cache mount for Maven repository
+# This will drastically speed up subsequent builds by reusing dependencies
+RUN --mount=type=cache,target=/root/.m2 mvn package -DskipTests
 
 # Run stage
 FROM eclipse-temurin:17-jre

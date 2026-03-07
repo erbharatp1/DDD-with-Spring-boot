@@ -11,3 +11,11 @@ run = "./mvnw spotless:check"
 [tasks.lint]
 description = "Automatically formats the code according to the defined rules."
 run = "./mvnw spotless:apply"
+
+[tasks."db:up"]
+description = "Start the database container."
+run = "docker compose up -d db"
+
+[tasks."db:down"]
+description = "Stop and remove the database container."
+run = "docker compose down"
