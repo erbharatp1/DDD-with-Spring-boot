@@ -24,8 +24,6 @@ public class OrderService {
     return orderRepository.save(order);
   }
 
-
-
   public Order get(String id) {
     log.info("Getting order with id {}", id);
     return orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException(id));
